@@ -3,46 +3,33 @@ import './App.css';
 import { useState } from 'react';
 
 
-function Square(){
-  const [value,setValue] = useState(null);
+function Square({value}){
+  
 
+  return(<button className="square">{value}</button>
+  );
 
-  function handleClick(){
-    if(value===null){
-      setValue('X');
-    }
-    else{
-      setValue(null)
-    }
-  }
-
-
-  return (<button 
-        className='square'
-        onClick={handleClick}
-      >
-    
-    {value}</button>);
 }
 
 
 function App() {
+  const [squares,setSquares] = useState(Array(9).fill(null))
   return (
     <div className="Board">
       <div className="board-row">
-        <Square ></Square>
-        <Square ></Square>
-        <Square ></Square>
+        <Square value={squares[0]}></Square>
+        <Square value={squares[1]}></Square>
+        <Square value={squares[2]}></Square>
       </div>
       <div className="board-row">
-        <Square ></Square>
-        <Square ></Square>
-        <Square></Square>
+        <Square value={squares[3]}></Square>
+        <Square value={squares[4]}></Square>
+        <Square value={squares[5]}></Square>
       </div>
       <div className="board-row">
-        <Square ></Square>
-        <Square ></Square>
-        <Square ></Square>
+        <Square value={squares[6]}></Square>
+        <Square value={squares[7]}></Square>
+        <Square value={squares[8]}></Square>
       </div>
     </div>
   );
