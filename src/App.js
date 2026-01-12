@@ -36,8 +36,15 @@ function Square({value,onSquareClick}) {
 function App() {
   const [squares,setSquares] = useState(Array(9).fill(null))
   const [xIsNext,setXIsNext] = useState(true);
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = "Winner: " + winner;
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
   function handleClick(i){
-    if(squares[i]){
+    if(squares[i]||calculateWinner(squares)){
       return;
     }
     const nextSquares = squares.slice();
@@ -55,6 +62,7 @@ function App() {
   
   return (
     <div className="Board">
+      <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
