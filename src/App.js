@@ -13,14 +13,22 @@ function Square({value,onSquareClick}) {
 
 
 function App() {
-
+  const [squares,setSquares] = useState(Array(9).fill(null))
+  const [xIsNext,setXIsNext] = useState(true);
   function handleClick(i){
     const nextSquares = squares.slice();
-    nextSquares[i] = 'X';
+    if(xIsNext){
+      nextSquares[i] = 'X';
+      setXIsNext(false);
+    }
+    else{
+      nextSquares[i] = 'O';
+      setXIsNext(true);
+    }
     setSquares (nextSquares);
   }
 
-  const [squares,setSquares] = useState(Array(9).fill(null))
+  
   return (
     <div className="Board">
       <div className="board-row">
